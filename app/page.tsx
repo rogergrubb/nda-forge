@@ -1,5 +1,13 @@
 "use client";
 import { useState } from "react";
+import Script from "next/script";
+
+// ─── CARBON ADS ────────────────────────────────────────────────────────────────
+// Sign up at https://www.carbonads.net — replace these after approval
+// The ad slot renders automatically once you set real values here.
+const CARBON_ADS_SERVE     = "REPLACE_WITH_CARBON_ADS_SERVE_ID";      // e.g. "CW7DC2JI"
+const CARBON_ADS_PLACEMENT = "REPLACE_WITH_CARBON_ADS_PLACEMENT";     // e.g. "ndaforgecom"
+// ──────────────────────────────────────────────────────────────────────────────
 
 const JURISDICTIONS = [
   "California, USA","New York, USA","Texas, USA","Florida, USA","Delaware, USA",
@@ -492,6 +500,18 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── Carbon Ads (renders only after Carbon Ads account is configured) ── */}
+      {CARBON_ADS_SERVE !== "REPLACE_WITH_CARBON_ADS_SERVE_ID" && (
+        <div className="max-w-2xl mx-auto px-6 pb-8 flex justify-center">
+          <Script
+            src={`//cdn.carbonads.com/carbon.js?serve=${CARBON_ADS_SERVE}&placement=${CARBON_ADS_PLACEMENT}`}
+            id="_carbonads_js_main"
+            strategy="lazyOnload"
+          />
+          <div id="carbonads" />
+        </div>
+      )}
 
       {/* ── FAQ ── */}
       <section className="max-w-2xl mx-auto px-6 pb-16">
