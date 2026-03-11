@@ -1,7 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const openai = new OpenAI({
+  apiKey: process.env.OPENROUTER_API_KEY,
+  baseURL: "https://openrouter.ai/api/v1",
+  defaultHeaders: {
+    "HTTP-Referer": "https://nda-forge.vercel.app",
+    "X-Title": "NDAForge",
+  },
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -47,7 +54,7 @@ Make the language clear, professional, and appropriate for the ${jurisdiction} j
 Output ONLY the NDA document text — no explanations, no preamble outside the document itself.`;
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "openai/gpt-4o-mini",
       messages: [{ role: "user", content: prompt }],
       max_tokens: 3000,
       temperature: 0.2,
