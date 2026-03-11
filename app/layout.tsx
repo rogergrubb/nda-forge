@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: "Generate a custom NDA in 30 seconds. Free preview, $9 to download. No signup.",
   },
   verification: {
-    google: "59c427b865d5e481",
+    google: "google59c427b865d5e481",
   },
 };
 
